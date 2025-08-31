@@ -1,3 +1,16 @@
+
+
+
+
+![tyty](https://github.com/user-attachments/assets/a36e3540-cb86-4ffb-9d72-5941258107c4)
+
+
+
+
+
+
+
+
 # Ghiblii
 
 A Studio Ghibli-inspired web project.
