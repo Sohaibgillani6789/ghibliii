@@ -1,0 +1,21 @@
+# Ignore log files and OS generated files
+*.log
+.DS_Store
+Thumbs.db
+
+# Ignore build output
+dist/
+build/
+.out/
+.next/
+.cache/
+.vscode/
+.env
+.env.local
+.env.*.local
+
+# Ignore coverage reports
+coverage/
+
+# Ignore node_modules folder
+node_modules/
