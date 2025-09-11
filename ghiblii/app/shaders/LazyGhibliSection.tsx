@@ -7,13 +7,10 @@ import { Canvas } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
 
 const DynamicGhibliScene = dynamic(
-  () =>
-    new Promise((resolve) => {
-      setTimeout(() => resolve(import("./scene")), 1500); // artificial delay for loader test
-    }),
+  () => import("./scene").then((mod) => mod.default),
   {
     ssr: false,
-    loading: () => <SceneLoader />,
+    loading: () => <SceneLoader />, 
   }
 );
 

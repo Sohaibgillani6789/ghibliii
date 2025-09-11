@@ -30,11 +30,10 @@ const GhibliScene = dynamic(() => import("./shaders/scene").then((mod) => mod.de
 
 const HomePage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const isAnimatingRef = useRef(false);
+  const isAnimatingRef = useRef(false); 
   const currentIndexRef = useRef(-1);
   const sectionScrollsRef = useRef(0);
-  const gotoSectionRef = useRef<(index: number, direction: number) => void>();
-
+  const gotoSectionRef = useRef<((index: number, direction: number) => void) | null>(null);
   function handleNavClick(idx: number) {
     if (isAnimatingRef.current || currentIndexRef.current === idx) return;
     const direction = idx > currentIndexRef.current ? 1 : -1;
@@ -214,53 +213,93 @@ const HomePage = () => {
     animation: "scroll-indicator-blink 1.2s infinite alternate"
   }}
 />
-  {/* Glassmorphism Card */}
+{/* Glassmorphism Card */}
 <div
   className="glass-card"
   style={{
-    left: "8%",
+    position: "fixed",
+    top: "50%",
+    left: "20%",
+    transform: "translate(-50%, -50%)",
     background: "rgba(0, 0, 0, 0.7)",
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(20px)",
-    width: "420px", /* Reduced width */
+    width: "90%", // ✅ Responsive width
+    maxWidth: "420px", // ✅ Prevents it from getting too big
     zIndex: 10,
-    padding: "16px", /* Adjusted padding */
-    position: "fixed",
-    top: "50%",
-    transform: "translateY(-50%)",
-    borderRadius: "20px", /* ✅ Rounded container */
-    overflow: "hidden", /* Keep content inside rounded edges */
+    padding: "16px",
+    borderRadius: "20px",
+    overflow: "hidden",
   }}
 >
   <p
     className="text-white mb-1"
-    style={{ fontFamily: "sans-serif", fontSize: "1rem", lineHeight: "1.4rem" }}
+    style={{
+      fontFamily: "sans-serif",
+      fontSize: "clamp(0.9rem, 2.5vw, 1rem)", // ✅ Responsive font
+      lineHeight: "1.4rem",
+    }}
   >
     Explore the Magic of Ghibli.
   </p>
+
   <h1
     className="text-white font-extrabold leading-tight mb-2"
-    style={{ fontFamily: "sans-serif", fontSize: "2.8rem", lineHeight: "1" }}
+    style={{
+      fontFamily: "sans-serif",
+      fontSize: "clamp(1.8rem, 6vw, 2.8rem)", // ✅ Scales on small/large screens
+      lineHeight: "1.1",
+    }}
   >
     Dreams and <br /> Adventure Await
   </h1>
+
   <p
     className="text-white mb-6"
-    style={{ fontFamily: "sans-serif", fontSize: "1rem", lineHeight: "1.5rem" }}
+    style={{
+      fontFamily: "sans-serif",
+      fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
+      lineHeight: "1.5rem",
+    }}
   >
     Step into Studio Ghibli's enchanting world, where stunning landscapes,
     heartfelt stories, and unforgettable characters come to life.
   </p>
-  <div className="flex space-x-3">
+
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap", // ✅ Buttons stack if screen is narrow
+      gap: "10px",
+    }}
+  >
     <button
-      className="bg-white text-black font-medium px-6 py-2 rounded-xl shadow hover:bg-gray-200 transition"
-      style={{ fontSize: "0.9rem" }}
+      style={{
+        background: "#fff",
+        color: "#000",
+        fontFamily: "sans-serif",
+        fontWeight: "500",
+        padding: "10px 20px",
+        borderRadius: "12px",
+        fontSize: "0.9rem",
+        cursor: "pointer",
+        flex: "1 1 auto", // ✅ Makes buttons responsive
+      }}
     >
       Explore more
     </button>
     <button
-      className="bg-gray-900/80 text-white font-medium px-6 py-2 rounded-xl shadow hover:bg-gray-800 transition"
-      style={{ fontSize: "0.9rem" }}
+      style={{
+        background: "rgba(30,30,30,0.9)",
+        color: "#fff",
+        fontFamily: "sans-serif",
+        fontWeight: "500",
+        padding: "10px 20px",
+        borderRadius: "12px",
+        fontSize: "0.9rem",
+        cursor: "pointer",
+        flex: "1 1 auto",
+      }}
     >
       Watch now
     </button>
