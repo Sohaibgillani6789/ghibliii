@@ -221,7 +221,7 @@ const HomePage = () => {
     top: "50%",
     left: "20%",
     transform: "translate(-50%, -50%)",
-    background: "rgba(0, 0, 0, 0.7)",
+    background: "rgba(0, 0, 0, 0.38)",
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(20px)",
     width: "90%", // ✅ Responsive width
